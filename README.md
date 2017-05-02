@@ -3,6 +3,12 @@
 **`p11proxy`** is a little `PKCS#11` Proxy designed to deal with PUK on Gemalto IDPrime smartcards.
 
 
+## Usage
+
+Use `p11proxy_{arch}.dll` instead of `idprimepkcs11{arch}.dll` in your program.  
+Be sure that the original `idprimepkcs11{arch}.dll` can be found from the program point of view (path, ...).
+
+
 ## Gemalto IDPrime Admin key / PUK normal behavior
 
 A PUK (like a PIN) is not always 4 to 8 numbers digits. It can be alphanumeric, binary, 12 bytes length... it depends on vendor/card/container policy.  
