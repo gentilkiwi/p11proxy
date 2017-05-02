@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="p11proxy.h" />
+    <ClInclude Include="pkcs11/cryptoki.h">
+      <Filter>pkcs11</Filter>
+    </ClInclude>
+    <ClInclude Include="pkcs11/pkcs11.h">
+      <Filter>pkcs11</Filter>
+    </ClInclude>
+    <ClInclude Include="pkcs11/pkcs11f.h">
+      <Filter>pkcs11</Filter>
+    </ClInclude>
+    <ClInclude Include="pkcs11/pkcs11t.h">
+      <Filter>pkcs11</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="p11proxy.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="pkcs11">
+      <UniqueIdentifier>{04912b70-94b1-4f0b-9cf0-370472d3e443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{0630794a-2e14-4d17-8b43-55119e805d78}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\idprimepkcs11.def">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="lib\idprimepkcs1164.def">
+      <Filter>lib</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\idprimepkcs11.lib">
+      <Filter>lib</Filter>
+    </Library>
+    <Library Include="lib\idprimepkcs1164.lib">
+      <Filter>lib</Filter>
+    </Library>
+  </ItemGroup>
+</Project>

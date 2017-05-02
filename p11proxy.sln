@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "p11proxy", "p11proxy.vcxproj", "{CE38819A-802D-4A64-94B9-FFADD84CF28E}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE38819A-802D-4A64-94B9-FFADD84CF28E}.Release|Win32.ActiveCfg = Release|Win32
+		{CE38819A-802D-4A64-94B9-FFADD84CF28E}.Release|Win32.Build.0 = Release|Win32
+		{CE38819A-802D-4A64-94B9-FFADD84CF28E}.Release|x64.ActiveCfg = Release|x64
+		{CE38819A-802D-4A64-94B9-FFADD84CF28E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
