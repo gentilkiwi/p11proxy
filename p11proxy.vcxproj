@@ -14,6 +14,10 @@
     <ProjectGuid>{CE38819A-802D-4A64-94B9-FFADD84CF28E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>p11proxy</RootNamespace>
+    <SccProjectName>Svn</SccProjectName>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccProvider>SubversionScc</SccProvider>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup>
@@ -76,6 +80,7 @@
   <ItemGroup>
     <None Include="lib\idprimepkcs11.def" />
     <None Include="lib\idprimepkcs1164.def" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\idprimepkcs11.lib" />

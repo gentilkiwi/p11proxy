@@ -33,6 +33,7 @@
     <None Include="lib\idprimepkcs1164.def">
       <Filter>lib</Filter>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\idprimepkcs11.lib">
