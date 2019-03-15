@@ -26,8 +26,8 @@ CK_RV CK_CALL_SPEC HOOK_C_InitToken(CK_SLOT_ID slotID, CK_UTF8CHAR_PTR pPin, CK_
 CK_RV CK_CALL_SPEC HOOK_C_Login(CK_SESSION_HANDLE hSession, CK_USER_TYPE userType, CK_UTF8CHAR_PTR pPin, CK_ULONG ulPinLen);
 CK_RV CK_CALL_SPEC HOOK_C_SetPIN(CK_SESSION_HANDLE hSession, CK_UTF8CHAR_PTR pOldPin, CK_ULONG ulOldLen, CK_UTF8CHAR_PTR pNewPin, CK_ULONG ulNewLen);
 
-CK_RV AdaptPukToValidPuk(CK_UTF8CHAR_PTR pPuk, CK_ULONG ulPukLen, CK_UTF8CHAR_PTR *ppValidPuk, CK_ULONG *pulValidPukLen);
-void FreeValidPuk(CK_UTF8CHAR_PTR pValidPuk);
+__declspec(noinline) CK_RV AdaptPukToValidPuk(CK_UTF8CHAR_PTR pPuk, CK_ULONG ulPukLen, CK_UTF8CHAR_PTR *ppValidPuk, CK_ULONG *pulValidPukLen);
+__declspec(noinline) void FreeValidPuk(CK_UTF8CHAR_PTR pValidPuk);
 
 PR_FW("C_CancelFunction")
 PR_FW("C_CloseAllSessions")
