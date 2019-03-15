@@ -61,8 +61,8 @@ CK_RV CK_CALL_SPEC HOOK_C_SetPIN(CK_SESSION_HANDLE hSession, CK_UTF8CHAR_PTR pOl
 {
 	CK_RV rv;
 	CK_SESSION_INFO info;
-	CK_BYTE_PTR oldPuk, newPuk;
-	CK_ULONG oldPukLen, newPukLen;
+	CK_BYTE_PTR oldPuk;
+	CK_ULONG oldPukLen;
 	rv = C_GetSessionInfo(hSession, &info);
 	if(rv == CKR_OK)
 	{
@@ -73,12 +73,7 @@ CK_RV CK_CALL_SPEC HOOK_C_SetPIN(CK_SESSION_HANDLE hSession, CK_UTF8CHAR_PTR pOl
 			rv = AdaptPukToValidPuk(pOldPin, ulOldLen, &oldPuk, &oldPukLen);
 			if(rv == CKR_OK)
 			{
-				rv = AdaptPukToValidPuk(pNewPin, ulNewLen, &newPuk, &newPukLen);
-				if(rv == CKR_OK)
-				{
-					rv = C_SetPIN(hSession, oldPuk, oldPukLen, newPuk, newPukLen);
-					FreeValidPuk(newPuk);
-				}
+				rv = C_SetPIN(hSession, oldPuk, oldPukLen, pNewPin, ulNewLen);
 				FreeValidPuk(oldPuk);
 			}
 		}
@@ -88,19 +83,25 @@ CK_RV CK_CALL_SPEC HOOK_C_SetPIN(CK_SESSION_HANDLE hSession, CK_UTF8CHAR_PTR pOl
 
 CK_RV AdaptPukToValidPuk(CK_UTF8CHAR_PTR pPuk, CK_ULONG ulPukLen, CK_UTF8CHAR_PTR *ppValidPuk, CK_ULONG *pulValidPukLen)
 {
-	CK_RV status = CKR_OK;
-	*ppValidPuk = NULL;
-	*pulValidPukLen = 0;
-	if(pPuk && ulPukLen)
+	CK_RV status;
+	if(pPuk && ulPukLen && ppValidPuk && pulValidPukLen)
 	{
-		*pulValidPukLen = max(ulPukLen, 24);
-		if(*ppValidPuk = (CK_UTF8CHAR_PTR) LocalAlloc(LPTR, *pulValidPukLen)) // 0x00 inside
+		*ppValidPuk = NULL;
+		*pulValidPukLen = 0;
+		if(*ppValidPuk = (CK_UTF8CHAR_PTR) LocalAlloc(LPTR, max(24, ulPukLen))) // 0x00 inside
 		{
-			if(!(((ulPukLen == sizeof(ULONG)) && (*((PULONG) pPuk) == '0000')) || ((ulPukLen == sizeof(ULONGLONG)) && (*((PULONGLONG) pPuk) == 0x3030303030303030)))) // keep 24*0x00
-				RtlCopyMemory(*ppValidPuk, pPuk, ulPukLen);
+			if((ulPukLen == sizeof(ULONGLONG)) && (*((PULONGLONG) pPuk) == 0x3030303030303030))
+				*pulValidPukLen = 24;
+			else
+			{
+				*pulValidPukLen = ulPukLen;
+				RtlCopyMemory(*ppValidPuk, pPuk, *pulValidPukLen);
+			}
+			status = CKR_OK;
 		}
 		else status = CKR_HOST_MEMORY;
 	}
+	else status = CKR_ARGUMENTS_BAD;
 	return status;
 }
 
